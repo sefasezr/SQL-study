@@ -46,6 +46,7 @@ CREATE TABLE students(
 	register_date DATE
 );
 
+
 --4-Mevcut olan bir tablodan yeni tablo oluşturma - DDL
 /*Senaryo: students tablosundaki öğrencilerin isimleri ve notları ile grades adında
 yeni bir tablo oluşturunuz. Bu yeni tablo yalnızca name ve grade sütunlarını
@@ -54,7 +55,10 @@ içersin ve bu sütunlar students tablosundan kopyalansin. Sonrasinda bu tabloyu
 create a new table. This new table contains only name and grade columns.
 and copy these columns from the students table. Then delete this table*/
 
-CREATE TABLE grades AS SELECT name , grade FROM students;  --AS SELECT şuradan al anlamında düşünülebilir
+CREATE TABLE grades AS SELECT name , grade FROM students;  --AS SELECT şuradan al anlamında düşünülebilir 
+                                              --ANCAK içindeki değerleri de alır
+
+SELECT * FROM grades;
 
 --5-Tabloyu silme - DDL
 

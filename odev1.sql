@@ -24,7 +24,7 @@ kimlik_no: 567597624, isim: Veli Guler
 */
 
 CREATE TABLE tedarikciler(
-tedarikci_id INTEGER,
+tedarikci_id SERIAL,
 tedarikci_ismi VARCHAR(20),
 tedarikci_adres TEXT,
 ulasim_tarihi DATE
