@@ -37,7 +37,7 @@ SELECT * FROM personel;
 SELECT isim , maas, sirket FROM personel
 WHERE sirket IN (SELECT sirket_adi FROM sirketler WHERE personel_sayisi>15000);
 
---ORNEK2: sirket_id'si 101'den buyuk olan sirket calisanlarinin isim,mas ve sehirlerini listeleyiniz
+--ORNEK2: sirket_id'si 101'den buyuk olan sirket calisanlarinin isim,maAs ve sehirlerini listeleyiniz
 
 SELECT isim , maas , sehir FROM personel
 WHERE sirket IN (SELECT sirket_adi FROM sirketler WHERE sirket_id>101 );
@@ -56,6 +56,14 @@ WHERE sirket_adi IN (SELECT sirket FROM personel WHERE sehir= 'Ankara');
 
 --ORNEK4: Her sirketin ismini,personel sayısını ve o şirkete ait personelin 
 -- toplam maaşını listeleyen bir sorgu yazınız
+
+SELECT sirket_adi, personel_sayisi , sum(SELECT maas FROM personel
+	                                    WHERE personel.sirket = sirketler.sirket_adi)
+	from sirketler;
+
+
+
+
 
 SELECT sirket_adi,personel_sayisi, (SELECT SUM(maas) FROM personel
     									WHERE personel.sirket = sirketler.sirket_adi) AS toplam_maas     
@@ -175,6 +183,10 @@ WHERE isim IS NOT NULL;
 UPDATE insanlar
 SET isim = 'NO NAME'
 WHERE isim IS NULL;
+
+SELECT sirket_adi, personel_sayisi, (SELECT MAX(maas) FROM personel WHERE sirket_adi = sirket)
+	                              , (SELECT MIN(maas) FROM personel WHERE sirket_adi =sirket)
+	FROM sirketler;
 
 
 UPDATE insanlar 
