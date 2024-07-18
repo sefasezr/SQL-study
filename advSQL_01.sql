@@ -69,6 +69,17 @@ end $$;
 -- film_title = degisken adidir
 -- film.title%type ise dinamik şekilde titlein data tipini alır
 
-
+do $$
+declare
+		film_title film.title%type;
+begin
+	SELECT title
+	FROM film
+	into film_title
+	WHERE id=1;
+	
+	raise notice '%',
+		film_title;
+end $$;
 
 

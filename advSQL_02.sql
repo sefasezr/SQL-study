@@ -13,7 +13,7 @@ declare
 	film_length film.length%type;
 	film_title film.title%type;
 begin
-	--TASK: Name i Shrek olan filmin type getirelim
+	--TASK: Name i Shrek olan filmin türünü ve uzunlugunu getirelim
 	SELECT title
 	FROM film
 	into film_title
@@ -103,6 +103,44 @@ end $$
 -- ÇIKTI = Kuzularin Sessizliği - Korku
 
 -- ****************** İC İCE BLOK YAPISI ********************
+--Şimdiye kadar 1 bloklu yani 1 do 1 declare 1 begin ve 1 end keywordune sahip ve tek statement ile data queryleri yaptik
+--Artık PL/SQL de ic ice girmis bloklar halinde birden fazla action'i db'ye yaptırabiliriz.
 
+do $$
+--dış blok /outer blok 
+<<outer_blok>>	
+declare
+		counter integer :=0;
+	begin
+		counter :=counter +1;
+		raise notice 'Counter in degeri: %',counter;
+
+	declare  --iç blok / inner block
+		counter2 integer :=0;
+	begin
+		counter2 := counter2+10;
+		raise notice 'Counter2 nin degeri: %',counter2;
+		raise notice 'Counter in degeri: %',counter;
+	end;
+end $$;
+
+do $$
+--dış blok /outer blok 
+<<outer_blok>>	
+declare
+		counter integer :=0;
+	begin
+		counter :=counter +1;
+		raise notice 'Counter in degeri: %',counter;
+
+	declare  --iç blok / inner block
+		counter integer :=0;
+	begin
+		counter := counter+10;
+		raise notice 'Counter in degeri: %',counter;  --aynı isimlerde degiskenler aynı blok icersiinde kullanılırsa bu degiskenin
+														-- hangi blokta oldugunu belirtip onu kullanmamız gerekir.
+		raise notice 'Counter in degeri: %',outer_blok.counter;  --timestamp : zaman sayacı
+	end;
+end $$;
 
 
