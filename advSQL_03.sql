@@ -62,6 +62,30 @@ begin
 
 end $$
 
+
+
+-------------------------
+do $$
+declare
+		selected_film film%rowtype;
+		input_film_id film.id%type := 0;
+
+begin
+
+	select * from film
+	into selected_film
+	where id= input_film_id;
+
+	if found then
+	raise notice 'Girdiginiz % id li filmin detayları: % %',input_film_id , selected_film.title, selected_film.type;
+	
+	
+	else
+	raise notice 'Girdiginiz id ile ilgili film bulunamadı: %',input_film_id; --film bulunmazsa bu mesaj verilecek
+	end if;
+
+end $$
+
 -- ***********************If .... then else***********************
 
 /*
@@ -135,11 +159,11 @@ elseif selected_film.length>120 then
 	len_description :='Long';
 else 
 	len_description :='Tanımlanamadı/Undefined';
-end if;
+end if; --nested else if yapısı icin bloku kapatma komutu
 
 raise notice '% filminin süresi: %',selected_film.title,len_description;
 
-end if;
+end if; --outer/ilk yazılan if ile baslayan blokun kapatılması icin yazılan kapatma komutudur
 	
 end $$;
 

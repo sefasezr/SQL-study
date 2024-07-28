@@ -42,7 +42,7 @@ end $$;
 --bir object'i maplermis gibi istedigimiz islemleri ypmamıza olanak tanır. Arka planda header/column değil row icindeki
 --datanin bilgilerini direkt alabiliriz
 
---TASK: id'si 1 olan actor ile ilgili tum datayı bulunur
+--TASK: id'si 1 olan actor ile ilgili tum datayı bulunuz
 
 do $$
 declare
@@ -119,6 +119,7 @@ declare
 		counter2 integer :=0;
 	begin
 		counter2 := counter2+10;
+		counter :=counter +1;
 		raise notice 'Counter2 nin degeri: %',counter2;
 		raise notice 'Counter in degeri: %',counter;
 	end;

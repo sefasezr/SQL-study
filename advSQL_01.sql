@@ -29,17 +29,18 @@ end $$;
 
 do $$
 declare
-	first_person varchar(50) :='Ahmet';
-	second_person varchar(50) :='Mehmet'; 
-	payment numeric(3) :=120;
-	birim varchar(4) := 'TL';
+	first_person VARCHAR(50) := 'Ahmet';
+	second_person VARCHAR(50) := 'Mehmet';
+	payment NUMERIC(3) :=120;
+	birim VARCHAR(5):='TL';
 begin
-	raise notice '% ve % beyler % % ye bilet aldilar.',
-					first_person,
-					second_person,
-					payment,
-					birim;
-end $$;
+	raise notice '% ve % beyler % % ye bilet aldilar', 
+	first_person,
+	second_person,
+	payment,
+	birim;
+end $$	;
+
 
 --*****************BEKLETME KOMUTU***********************
 
@@ -75,7 +76,7 @@ declare
 begin
 	SELECT title
 	FROM film
-	into film_title
+	into film_title  --burada into içine almak için kullanılır yani film_title = title gibi bir şey aslında
 	WHERE id=1;
 	
 	raise notice '%',
