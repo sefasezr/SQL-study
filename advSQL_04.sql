@@ -239,3 +239,24 @@ end $$;
 */
 
 
+do $$
+declare 
+n integer :=7;
+counter integer :=0;
+ilkdeger integer :=0;
+sonrakideger integer :=1;
+fib integer :=0;
+
+BEGIN
+
+	LOOP
+		EXIT WHEN counter = n OR n < 1;
+		counter := counter+1;
+		SELECT sonrakideger, ilkdeger+sonrakideger
+		INTO ilkdeger, sonrakideger;
+		fib:= ilkdeger;
+		RAISE NOTICE '%', fib;
+	END LOOP;
+
+END $$;
+
